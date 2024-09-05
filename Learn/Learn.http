@@ -1,0 +1,6 @@
+@Learn_HostAddress = http://localhost:5267
+
+GET {{Learn_HostAddress}}/
+Accept: application/json
+
+###
