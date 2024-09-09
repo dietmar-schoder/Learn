@@ -2,10 +2,21 @@
 
 public interface IScopedClass
 {
-    int Identity { get; set; }
+    void DoSomething();
 }
 
-public class ScopedClass(ISingletonCalculator singletonCalculator) : IScopedClass
+public class ScopedClass : IScopedClass
 {
-    public int Identity { get; set; } = singletonCalculator.GetNextValue();
+    private readonly ILogger<ScopedClass> _logger;
+
+    public ScopedClass(ISingletonClass singletonClass, ILogger<ScopedClass> logger)
+    {
+        _logger = logger;
+        singletonClass.ScopedIndex++;
+    }
+
+    public void DoSomething()
+    {
+        _logger.Log(LogLevel.Information, $"{nameof(DoSomething)} was called.");
+    }
 }

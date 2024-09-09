@@ -1,11 +1,9 @@
 ﻿namespace Learn.BLL;
 
-public interface ITransientClass
+public class TransientClass
 {
-    int Identity { get; set; }
-}
-
-public class TransientClass(ISingletonCalculator singletonCalculator) : ITransientClass
-{
-    public int Identity { get; set; } = singletonCalculator.GetNextValue();
+    public TransientClass(ISingletonClass singletonClass)
+    {
+        singletonClass.TransientIndex++;
+    }
 }
